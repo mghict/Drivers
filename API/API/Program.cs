@@ -69,9 +69,7 @@ builder.Services.AddControllers(options =>
                 }
             }
         }
-
-        object response;
-        response = new
+        object response = new
         {
             code = -1,
             message = sb.ToString()
