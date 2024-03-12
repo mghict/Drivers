@@ -1,0 +1,16 @@
+<svg id="Back_Terms" data-name="Back Terms" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="468.229" viewBox="0 0 1920 468.229">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_11697" data-name="Rectangle 11697" width="151.369" height="151.369" fill="#fff2f2"/>
+    </clipPath>
+  </defs>
+  <path id="Rectangle_11698" data-name="Rectangle 11698" d="M0,0H1920a0,0,0,0,1,0,0V59a320,320,0,0,1-320,320H320A320,320,0,0,1,0,59V0A0,0,0,0,1,0,0Z" fill="#e1f0ff"/>
+  <g id="Group_25519" data-name="Group 25519" transform="translate(1382.731 361.195) rotate(-45)">
+    <g id="Group_25518" data-name="Group 25518" transform="translate(0 0)" clip-path="url(#clip-path)">
+      <path id="Path_23153" data-name="Path 23153" d="M125.388,25.978a88.667,88.667,0,0,1,.015,125.392L92.428,119.539,44.986,72.188.377,25.516C35-9.109,90.763-8.647,125.388,25.978" transform="translate(0.003 -0.001)" fill="#fff2f2"/>
+    </g>
+  </g>
+  <path id="Polygon_2" data-name="Polygon 2" d="M69.307,23.913a18,18,0,0,1,30.386,0l51.738,81.434A18,18,0,0,1,136.238,133H32.762a18,18,0,0,1-15.193-27.653Z" transform="matrix(0.946, -0.326, 0.326, 0.946, 197.453, 185.135)" fill="#fff"/>
+  <path id="Polygon_3" data-name="Polygon 3" d="M22.627,0l-2.1,11.475L32,9.373,22.4,16,32,22.627l-11.475-2.1L22.627,32,16,22.4,9.373,32l2.1-11.475L0,22.627,9.6,16,0,9.373l11.475,2.1L9.373,0,16,9.6Z" transform="translate(1148 158)" fill="#fd7e14"/>
+  <path id="solid_plus" data-name="solid plus" d="M22.286,41.429H14.571V33.714A1.715,1.715,0,0,0,12.857,32H11.143a1.715,1.715,0,0,0-1.714,1.714v7.714H1.714A1.715,1.715,0,0,0,0,43.143v1.714a1.714,1.714,0,0,0,1.714,1.714H9.429v7.714A1.714,1.714,0,0,0,11.143,56h1.714a1.714,1.714,0,0,0,1.714-1.714V46.571h7.714A1.714,1.714,0,0,0,24,44.857V43.143A1.715,1.715,0,0,0,22.286,41.429Z" transform="translate(475 304)" fill="#7239ea"/>
+</svg>

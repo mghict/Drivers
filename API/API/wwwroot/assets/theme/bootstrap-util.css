@@ -1,0 +1,46 @@
+.soft-primary {
+  background-color: var(--bs-cyan);
+  color: var(--bs-primary);
+}
+.soft-primary:hover {
+  background-color: var(--bs-primary);
+  color: var(--bs-light);
+}
+
+.soft-info {
+  background-color: var(--bs-purple);
+  color: var(--bs-info);
+}
+.soft-info:hover {
+  background-color: var(--bs-info);
+  color: var(--bs-light);
+}
+
+.soft-success {
+  background-color: var(--bs-teal);
+  color: var(--bs-success);
+}
+.soft-success:hover {
+  background-color: var(--bs-success);
+  color: var(--bs-light);
+}
+
+.soft-danger {
+  background-color: var(--bs-red);
+  color: var(--bs-danger);
+}
+.soft-danger:hover {
+  background-color: var(--bs-danger);
+  color: var(--bs-light);
+}
+
+.soft-gray {
+  background-color: var(--bs-gray-500);
+  color: var(--bs-gray-900);
+}
+.soft-gray:hover {
+  background-color: var(--bs-gray-900);
+  color: var(--bs-light);
+}
+
+/*# sourceMappingURL=bootstrap-util.css.map */

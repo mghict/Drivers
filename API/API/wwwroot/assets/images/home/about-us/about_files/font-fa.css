@@ -1,0 +1,14 @@
+@font-face {
+  font-family: IRANSansMobile-fa;
+  font-style: normal;
+  font-weight: bold;
+  src: url('https://passenger-pwa-cdn.snapp.ir/fonts/Iran-sans-fa/fa-Iran-sans-web-bold.woff2');
+  font-display: fallback;
+}
+@font-face {
+  font-family: IRANSansMobile-fa;
+  font-style: normal;
+  font-weight: 300;
+  src: url('https://passenger-pwa-cdn.snapp.ir/fonts/Iran-sans-fa/fa-Iran-sans-web-light.woff2');
+  font-display: fallback;
+}

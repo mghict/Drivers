@@ -1,0 +1,15 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.direction-to-right {
+  direction: ltr;
+}
+
+.direction-to-left {
+  direction: rtl;
+}
+
+.text-justify {
+  text-align: justify;
+}

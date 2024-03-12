@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54">
+                            <g id="Group_25640" data-name="Group 25640" transform="translate(-1587)">
+                                <circle id="Ellipse_128" data-name="Ellipse 128" cx="27" cy="27" r="27"
+                                    transform="translate(1587)" fill="#50cd89" opacity="0.3" />
+                                <g id="solid_check" data-name="solid check" transform="translate(1602 18.051)">
+                                    <path id="solid_check-2" data-name="solid check"
+                                        d="M8.152,82.644l-7.8-7.8a1.2,1.2,0,0,1,0-1.7l1.7-1.7a1.2,1.2,0,0,1,1.7,0L9,76.7,20.255,65.45a1.2,1.2,0,0,1,1.7,0l1.7,1.7a1.2,1.2,0,0,1,0,1.7l-13.8,13.8a1.2,1.2,0,0,1-1.7,0Z"
+                                        transform="translate(0 -65.098)" fill="#50cd89" />
+                                </g>
+                            </g>
+                        </svg>

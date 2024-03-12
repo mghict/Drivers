@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54">
+                            <g id="Group_25640" data-name="Group 25640" transform="translate(-1587)">
+                                <circle id="Ellipse_128" data-name="Ellipse 128" cx="27" cy="27" r="27"
+                                    transform="translate(1587)" fill="#ffc700" opacity="0.3" />
+                                <path id="solid_clock" data-name="solid clock"
+                                    d="M20,8A12,12,0,1,0,32,20,12,12,0,0,0,20,8Zm2.763,16.94-4.268-3.1a.584.584,0,0,1-.237-.469V13.226a.582.582,0,0,1,.581-.581h2.323a.582.582,0,0,1,.581.581v6.663l3.073,2.235a.58.58,0,0,1,.126.813l-1.365,1.877a.585.585,0,0,1-.813.126Z"
+                                    transform="translate(1594 7)" fill="#ffc700" />
+                            </g>
+                        </svg>
