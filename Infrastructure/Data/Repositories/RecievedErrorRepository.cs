@@ -53,6 +53,7 @@ public class RecievedErrorRepository : Moneyon.Common.Data.SqlServer.SqlServerGe
                               .Where(expDateGT)
                               .Where(expDateLT)
                               .Include(p => p.ErrorCode)
+                              .OrderByDescending(p=>p.SendDate).ThenByDescending(p=>p.RowNumber)
                               .ToListAsync();
 
         request!.Filters = new List<DataRequestFilter>();
