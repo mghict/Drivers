@@ -28,7 +28,7 @@ namespace Driver.API.Controllers
             {
                 case 0: await CreateErrors(Convert.ToInt32(a),
                                        Convert.ToInt64(b),
-                                       Convert.ToInt64(c1),
+                                       Convert.ToInt32(c1),
                                        Convert.ToInt64(c2),
                                        Convert.ToDateTime(c3));
                         break;
@@ -74,7 +74,7 @@ namespace Driver.API.Controllers
         }
 
         [NonAction]
-        public async Task CreateErrors(int a,long b,long c1,long c2,DateTime c3)
+        public async Task CreateErrors(int a,long b,int c1,long c2,DateTime c3)
         {
             if (a != 0)
                 throw new BizException("value is not valid");

@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace Driver.Common.Models;
 
+public class AutoErrorDto
+{
+    public int ErrorCodeId { get; set; }
+    public string ErrorCodeMessage { get; set; }
+    public DateTime SendDate { get; set; }
+}
 public class AutoLastLocationModel
 {
     public AutoDto? Auto { get; set; }

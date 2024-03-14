@@ -20,14 +20,14 @@ public class RecivedService
         _mp = mp;
     }
 
-    public async Task CreateErrorAsync(long deviceCode, long errorCode, long rowNumber, DateTime sendDate)
+    public async Task CreateErrorAsync(long deviceCode, int errorCode, long rowNumber, DateTime sendDate)
     {
         var auto = await _uw.AutoRepository.FirstOrDefaultAsync(p => p.DeviceCode == deviceCode);
 
         var entity = new RecievedError
         {
             AutoId = auto?.Id ?? null,
-            ErrorCode = errorCode,
+            ErrorCodeId = errorCode,
             RowNumber = rowNumber,
             SendDate = sendDate,
             DeviceCode = deviceCode,

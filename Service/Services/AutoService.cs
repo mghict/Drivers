@@ -55,6 +55,12 @@ public class AutoService
         return _mp.MapDataResult<Auto, AutoDto>(autos);
     }
 
+    public async Task<DataResult<AutoErrorDto>> GetAutoErrorsPagableAsync(DataRequest request, long autoId)
+    {
+        var autos = await _uw.RecievedErrorRepository.GetAutoErrorsPagableAsync(request, autoId);
+        return _mp.MapDataResult<RecievedError, AutoErrorDto>(autos);
+    }
+
     public async Task<AutoLastLocationModel> GetAutoLastLocationAsync(long id)
     {
         var auto = await _uw.RecievedWeightRepository

@@ -73,5 +73,8 @@ public class AutoMappingProfile : AutoMapper.Profile
             ;
 
         CreateMap<RecievedSpeedAndTemprature, AutoTransportModel>();
+
+        CreateMap<RecievedError, AutoErrorDto>()
+            .ForMember(des => des.ErrorCodeMessage, src => src.MapFrom(src => src.ErrorCode!.ErrorMessage));
     }
 }

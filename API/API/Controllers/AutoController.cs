@@ -117,4 +117,13 @@ public class AutoController : AppBaseController
         CheckUser();
         return await autoService.GetAutoLastLocationAsync(autoId);
     }
+
+
+    [HttpGet]
+    [Route("{autoId}/auto-errors")]
+    [JWTAuthorization(new PermissionEnum[] { PermissionEnum.AutoHistoryReportView })]
+    public async Task<DataResult<AutoErrorDto>> GetAutoErrorsReportPagableAsync([FromQuery] DataRequest request,long autoId)
+    {
+        return await autoService.GetAutoErrorsPagableAsync(request, autoId);
+    }
 }

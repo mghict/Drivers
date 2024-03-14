@@ -5,7 +5,7 @@ namespace Driver.Service.IRepositories;
 
 public interface IRecievedErrorRepository : IGenericRelationalRepository<RecievedError, long>
 {
-
+    Task<DataResult<RecievedError>> GetAutoErrorsPagableAsync(DataRequest request, long autoId);
 }
 
 
