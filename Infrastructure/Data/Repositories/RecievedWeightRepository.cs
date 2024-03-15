@@ -178,6 +178,8 @@ public class RecievedWeightRepository : Moneyon.Common.Data.SqlServer.SqlServerG
                                         .SumAsync(p => p.Weight);
         }
 
+        request!.Filters = new List<DataRequestFilter>();
+
         return await GetDataResultAsync(request, lst.AsQueryable());
     }
     
