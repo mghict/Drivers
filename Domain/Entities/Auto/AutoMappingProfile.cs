@@ -76,5 +76,15 @@ public class AutoMappingProfile : AutoMapper.Profile
 
         CreateMap<RecievedError, AutoErrorDto>()
             .ForMember(des => des.ErrorCodeMessage, src => src.MapFrom(src => src.ErrorCode!.ErrorMessage));
+
+        CreateMap<RecievedError, AutoOffDeviceDto>()
+            .ForMember(des => des.DriverDisplayName, src => src.MapFrom(src => src.Auto!.Person!.DisplayName))
+            .ForMember(des => des.OffDate, src => src.MapFrom(src => src.SendDate))
+            .ForMember(des => des.MineName, src => src.MapFrom(src => src.Auto!.Mine!.Name))
+            .ForMember(des => des.Id, src => src.MapFrom(src => src.AutoId))
+            .ForMember(des => des.DeviceCode, src => src.MapFrom(src => src.DeviceCode))
+            .ForMember(des => des.Pelak, src => src.MapFrom(src => src.Auto!.Pelak))
+            .ForMember(des => des.AutoModelName, src => src.MapFrom(src => src.Auto!.AutoModel!.Name))
+            ;
     }
 }

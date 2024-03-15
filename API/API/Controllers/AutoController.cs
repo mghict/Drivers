@@ -102,7 +102,7 @@ public class AutoController : AppBaseController
 
     [HttpGet]
     [Route("autos-list")]
-    [JWTAuthorization(new PermissionEnum[] { PermissionEnum.AutoHistoryReportView })]
+    [JWTAuthorization(new PermissionEnum[] { PermissionEnum.AutoHistoryReportView,PermissionEnum.AutoStatusReportView })]
     public async Task<DataResult<AutoDto>> GetAutosReportPagableAsync([FromQuery] DataRequest request)
     {
         CheckUser();
@@ -111,7 +111,7 @@ public class AutoController : AppBaseController
 
     [HttpGet]
     [Route("{autoId}/auto-online")]
-    [JWTAuthorization(new PermissionEnum[] { PermissionEnum.AutoHistoryReportView })]
+    [JWTAuthorization(new PermissionEnum[] { PermissionEnum.AutoStatusReportView })]
     public async Task<AutoLastLocationModel> GetAutoLastLocationAsync(long autoId)
     {
         CheckUser();
@@ -121,9 +121,18 @@ public class AutoController : AppBaseController
 
     [HttpGet]
     [Route("{autoId}/auto-errors")]
-    [JWTAuthorization(new PermissionEnum[] { PermissionEnum.AutoHistoryReportView })]
+    [JWTAuthorization(new PermissionEnum[] { PermissionEnum.AutoStatusReportView })]
     public async Task<DataResult<AutoErrorDto>> GetAutoErrorsReportPagableAsync([FromQuery] DataRequest request,long autoId)
     {
         return await autoService.GetAutoErrorsPagableAsync(request, autoId);
+    }
+
+    [HttpGet]
+    [Route("auto-offdevice")]
+    [JWTAuthorization(new PermissionEnum[] { PermissionEnum.AutoOffDeviceReportView })]
+    public async Task<DataResult<AutoOffDeviceDto>> GetAutosOffDeviceReportPagableAsync([FromQuery] DataRequest request)
+    {
+        CheckUser();
+        return await autoService.GetAutosWithError_OFF_DevicePagableAsync(request,User!);
     }
 }

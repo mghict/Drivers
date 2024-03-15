@@ -1,4 +1,6 @@
-﻿using Domain.Entities;
+﻿using DocumentFormat.OpenXml.InkML;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Domain.Entities;
 using Driver.Common.Models.Reports;
 using Driver.Domain.Entities;
 using Driver.Service.IRepositories;
@@ -60,7 +62,149 @@ public class RecievedErrorRepository : Moneyon.Common.Data.SqlServer.SqlServerGe
 
         return await GetDataResultAsync(request, lst.AsQueryable());
     }
+    public async Task<DataResult<RecievedError>> GetAutosByErrorCodePagableAsync(DataRequest request,int errorCode,User user)
+    {
+        var provinceIds = user.Provinces?.Select(p => p.Id)?.ToList();
+        var mineIds = user.Mines?.Select(p => p.Id)?.ToList();
 
+        Expression<Func<RecievedError, bool>> expDeviceCode = p => p.Id > 0;
+        Expression<Func<RecievedError, bool>> expDateGT = p => p.Id > 0;
+        Expression<Func<RecievedError, bool>> expDateLT = p => p.Id > 0;
+
+        if (request is not null && request.Filters is not null)
+        {
+            foreach (var item in request.Filters)
+            {
+                if (item.Field.Trim().ToLower() == "devicecode" &&
+                    !string.IsNullOrWhiteSpace(item.Value))
+                {
+                    expDeviceCode = p => p.DeviceCode.ToString().Contains(item.Value);
+                }
+
+                if (item.Field.Trim().ToLower() == "senddate" &&
+                    !string.IsNullOrWhiteSpace(item.Value) &&
+                    item.Operator == FilterOperator.GT)
+                {
+                    expDateGT = p => p.SendDate.Date >= Convert.ToDateTime(item.Value).Date;
+                }
+
+                if (item.Field.Trim().ToLower() == "senddate" &&
+                    !string.IsNullOrWhiteSpace(item.Value) &&
+                    item.Operator == FilterOperator.LT)
+                {
+                    expDateLT = p => p.SendDate.Date <= Convert.ToDateTime(item.Value).Date;
+                }
+            }
+        }
+
+        var lst = user.RoleId switch
+        {
+            3 => await dbSet.AsQueryable()
+                              .Where(p => p.ErrorCodeId == errorCode &&
+                                          p.AutoId != null &&
+                                          provinceIds!.Contains(p.Auto!.Mine!.Location!.City!.ProvinceId))
+                              .Where(expDeviceCode)
+                              .Where(expDateGT)
+                              .Where(expDateLT)
+                              .Include(p => p.ErrorCode)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.Person!)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.Mine!)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.AutoModel!)
+                              .OrderByDescending(p => p.SendDate).ThenByDescending(p => p.RowNumber)
+                              .ToListAsync(),
+
+            4 => await dbSet.AsQueryable()
+                              .Where(p => p.ErrorCodeId == errorCode && 
+                                          p.AutoId != null &&
+                                          mineIds!.Contains(p.Auto!.MineId))
+                              .Where(expDeviceCode)
+                              .Where(expDateGT)
+                              .Where(expDateLT)
+                              .Include(p => p.ErrorCode)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.Person!)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.Mine!)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.AutoModel!)
+                              .OrderByDescending(p => p.SendDate).ThenByDescending(p => p.RowNumber)
+                              .ToListAsync(),
+
+            _ => await dbSet.AsQueryable()
+                              .Where(p => p.ErrorCodeId == errorCode && p.AutoId != null)
+                              .Where(expDeviceCode)
+                              .Where(expDateGT)
+                              .Where(expDateLT)
+                              .Include(p => p.ErrorCode)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.Person!)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.Mine!)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.AutoModel!)
+                              .OrderByDescending(p => p.SendDate).ThenByDescending(p => p.RowNumber)
+                              .ToListAsync()
+        };
+
+        request!.Filters = new List<DataRequestFilter>();
+
+        return await GetDataResultAsync(request, lst.AsQueryable());
+    }
+    public async Task<DataResult<RecievedError>> GetAutosByErrorCodePagableAsync(DataRequest request, int errorCode)
+    {
+
+        Expression<Func<RecievedError, bool>> expDeviceCode = p => p.Id > 0;
+        Expression<Func<RecievedError, bool>> expDateGT = p => p.Id > 0;
+        Expression<Func<RecievedError, bool>> expDateLT = p => p.Id > 0;
+
+        if (request is not null && request.Filters is not null)
+        {
+            foreach (var item in request.Filters)
+            {
+                if (item.Field.Trim().ToLower() == "devicecode" &&
+                    !string.IsNullOrWhiteSpace(item.Value))
+                {
+                    expDeviceCode = p => p.DeviceCode.ToString().Contains(item.Value);
+                }
+
+                if (item.Field.Trim().ToLower() == "senddate" &&
+                    !string.IsNullOrWhiteSpace(item.Value) &&
+                    item.Operator == FilterOperator.GT)
+                {
+                    expDateGT = p => p.SendDate.Date >= Convert.ToDateTime(item.Value).Date;
+                }
+
+                if (item.Field.Trim().ToLower() == "senddate" &&
+                    !string.IsNullOrWhiteSpace(item.Value) &&
+                    item.Operator == FilterOperator.LT)
+                {
+                    expDateLT = p => p.SendDate.Date <= Convert.ToDateTime(item.Value).Date;
+                }
+            }
+        }
+
+        var lst =  await dbSet.AsQueryable()
+                              .Where(p => p.ErrorCodeId == errorCode && p.AutoId != null)
+                              .Where(expDeviceCode)
+                              .Where(expDateGT)
+                              .Where(expDateLT)
+                              .Include(p => p.ErrorCode)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.Person!)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.Mine!)
+                              .Include(p => p.Auto!)
+                              .ThenInclude(p => p.AutoModel!)
+                              .OrderByDescending(p => p.SendDate).ThenByDescending(p => p.RowNumber)
+                              .ToListAsync();
+
+        request!.Filters = new List<DataRequestFilter>();
+
+        return await GetDataResultAsync(request, lst.AsQueryable());
+    }
     private async Task<DataResult<RecievedError>> GetDataResultAsync(DataRequest? request, IQueryable<RecievedError> query, CancellationToken cancellationToken = default)
     {
         if (request != null)

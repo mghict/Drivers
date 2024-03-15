@@ -61,6 +61,55 @@ public class AutoService
         return _mp.MapDataResult<RecievedError, AutoErrorDto>(autos);
     }
 
+    public async Task<DataResult<AutoOffDeviceDto>> GetAutosWithError_OFF_DevicePagableAsync(DataRequest request)
+    {
+        var autos = await _uw.RecievedErrorRepository.GetAutosByErrorCodePagableAsync(request, 5);
+        var result = _mp.MapDataResult<RecievedError, AutoOffDeviceDto>(autos);
+
+        var autoOffs = _mp.MapCollection<RecievedError, AutoOffDeviceDto>(autos.Data)?.ToList();
+        foreach (var item in autoOffs!)
+        {
+            var error = await _uw.RecievedErrorRepository
+                                 .FirstOrDefaultAsync(filter: p => p.ErrorCodeId == 6 &&
+                                                                  p.SendDate > item.OffDate &&
+                                                                  p.DeviceCode == item.DeviceCode,
+                                                      orderBy: o => o.OrderBy(p => p.DeviceCode)
+                                                                  .OrderBy(p => p.SendDate)
+                                                      );
+
+            if (error is not null)
+                item.ONDate = error.SendDate;
+
+        }
+
+        result.Data = autoOffs!.AsEnumerable();
+        return result;
+    }
+    public async Task<DataResult<AutoOffDeviceDto>> GetAutosWithError_OFF_DevicePagableAsync(DataRequest request,User user)
+    {
+        var autos = await _uw.RecievedErrorRepository.GetAutosByErrorCodePagableAsync(request,5,user);
+        var result = _mp.MapDataResult<RecievedError, AutoOffDeviceDto>(autos);
+
+        var autoOffs = _mp.MapCollection<RecievedError, AutoOffDeviceDto>(autos.Data)?.ToList();
+        foreach (var item in autoOffs!)
+        {
+            var error = await _uw.RecievedErrorRepository
+                                 .FirstOrDefaultAsync(filter:p => p.ErrorCodeId == 6 &&
+                                                                  p.SendDate > item.OffDate &&
+                                                                  p.DeviceCode == item.DeviceCode,
+                                                      orderBy:o=>o.OrderBy(p=>p.DeviceCode)
+                                                                  .OrderBy(p=>p.SendDate)
+                                                      );
+
+            if (error is not null)
+                item.ONDate = error.SendDate;
+
+        }
+
+        result.Data = autoOffs!.AsEnumerable();
+        return result;
+    }
+
     public async Task<AutoLastLocationModel> GetAutoLastLocationAsync(long id)
     {
         var auto = await _uw.RecievedWeightRepository

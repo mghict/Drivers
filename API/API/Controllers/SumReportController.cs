@@ -50,7 +50,6 @@ public class SumReportController : AppBaseController
     }
 
 
-
     [HttpGet]
     [Route("{provinceId}/city")]
     [JWTAuthorization(new PermissionEnum[] { PermissionEnum.ProvinceReportView })]
@@ -59,22 +58,7 @@ public class SumReportController : AppBaseController
         return await sumService.CitySumAsync(request, provinceId);
     }
 
-    [HttpGet]
-    [Route("city")]
-    [JWTAuthorization(new PermissionEnum[] { PermissionEnum.CityReportView })]
-    public async Task<DataResult<CitySumModel>> CitySumReportAsync([FromQuery] DataRequest request, int provinceId)
-    {
-        CheckUser();
-        return await sumService.CitySumAsync(request,User!);
-    }
-
-    [HttpGet]
-    [Route("{cityId}/mine")]
-    [JWTAuthorization(new PermissionEnum[] { PermissionEnum.ProvinceReportView , PermissionEnum.CityReportView})]
-    public async Task<DataResult<MineSumModel>> CityMineSumReportAsync([FromQuery] DataRequest request, int cityId)
-    {
-        return await sumService.MineSumAsync(request, cityId);
-    }
+    
 
     [HttpGet]
     [Route("mine")]

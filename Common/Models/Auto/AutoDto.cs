@@ -44,4 +44,18 @@ public class AutoDto
     
 }
 
+public class AutoOffDeviceDto
+{
+    public long Id { get; set; }
+    public string Pelak { get; set; }
+    public string AutoModelName { get; set; }
+    public long DeviceCode { get; set; }
+    public string DriverDisplayName { get; set; }
+    public string MineName { get; set; }
+    
+    public DateTime OffDate { get; set; }
+    public DateTime? ONDate { get; set; }
+    public TimeSpan? DiffrentTime => ONDate is null ? null : ONDate.Value.Subtract(OffDate);
+}
+
 

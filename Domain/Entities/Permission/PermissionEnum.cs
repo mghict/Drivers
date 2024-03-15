@@ -130,15 +130,18 @@ public enum PermissionEnum
     MaterialDelete = 273,
 
     // Reports Managment
-    [Description("گزارش کارکرد خودروها")]
+    [Description("گزارش تردد خودرو")]
     AutoHistoryReportView = 300,
 
-    [Description("گزارش خلاصه عملکرد به تفکیک استان")]
+    [Description("گزارش خلاصه عملکرد استان")]
     ProvinceReportView = 301,
 
-    [Description("گزارش خلاصه عملکرد به تفکیک شهر")]
-    CityReportView = 302,
+    [Description("گزارش خلاصه عملکرد معدن")]
+    MineReportView = 302,
 
-    [Description("گزارش خلاصه عملکرد به تفکیک معدن")]
-    MineReportView = 303,
+    [Description("گزارش وضعیت خودرو")]
+    AutoStatusReportView = 303,
+
+    [Description("گزارش خودرو غیرفعال")]
+    AutoOffDeviceReportView = 304,
 }
